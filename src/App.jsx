@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
-  const [IsGameStarted, setIsGameStarted] = useState(true);
+  const [IsGameStarted, setIsGameStarted] = useState(false);
 
   const toggleGamePlay = () => {
     setIsGameStarted((prev) => !prev);
