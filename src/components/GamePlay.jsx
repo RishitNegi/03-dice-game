@@ -4,11 +4,14 @@ import TotalScore from "./TotalScore";
 import propTypes from "prop-types";
 import RollDice from "./RollDice";
 import { useState } from "react";
+import Rules from "./Rules";
 
 const GamePlay = ({ toggle }) => {
   const [SelectedNumber, setSelectedNumber] = useState(0);
   const [CurrentDice, setCurrentDice] = useState(4);
   const [Score, setScore] = useState(0);
+  const [showRules, setShowRules] = useState(false);
+
   const genRandomNum = (min, max) => {
     return Math.random() * (max - min) + min;
   };
@@ -30,30 +33,55 @@ const GamePlay = ({ toggle }) => {
   return (
     <Main>
       <Button onClick={toggle}>Back</Button>
-      <div className="flexbox">
+      <div className="flex-box">
         <TotalScore Score={Score} setScore={setScore} />
         <NumberSelector
           SelectedNumber={SelectedNumber}
           setSelectedNumber={setSelectedNumber}
         />
       </div>
-      <RollDice CurrentDice={CurrentDice} rollDice={rollDice} SelectedNumber={SelectedNumber} setScore={setScore} setSelectedNumber={setSelectedNumber} />
+      <RollDice
+        CurrentDice={CurrentDice}
+        rollDice={rollDice}
+        SelectedNumber={SelectedNumber}
+      />
+      <div className="buttons">
+        <OutlineButton
+          onClick={() => {
+            setScore(0);
+            setSelectedNumber(undefined);
+          }}
+        >
+          Reset score
+        </OutlineButton>
+        <ShowButton onClick={() => setShowRules((prev) => !prev)}>
+          {showRules ? "Hide" : "Show"} Rules
+        </ShowButton>
+      </div>
+
+      {showRules && <Rules />}
     </Main>
   );
 };
-
 export default GamePlay;
 
 const Main = styled.main`
-  .flexbox {
+  max-width: 1280px;
+  margin: 0 auto;
+
+  .flex-box {
     display: flex;
     justify-content: space-between;
   }
-`;
 
-GamePlay.propTypes = {
-  toggle: propTypes.func,
-};
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.63rem;
+    margin-top: 1.5rem;
+  }
+`;
 
 const Button = styled.button`
   position: absolute;
@@ -86,3 +114,43 @@ const Button = styled.button`
     transition: 0.3s background ease-in;
   }
 `;
+
+const OutlineButton = styled.button`
+  width: 220px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: 0.2s background ease-in;
+  border: 1px solid #000;
+  background-color: #fff;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+`;
+
+const ShowButton = styled.button`
+  width: 220px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: 0.2s background ease-in;
+  border: 1px solid #000;
+
+  background-color: #000;
+  color: #fff;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
+GamePlay.propTypes = {
+  toggle: propTypes.func,
+};

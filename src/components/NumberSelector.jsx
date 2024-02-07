@@ -28,8 +28,8 @@ const NumberSelector = ({
 export default NumberSelector;
 
 const Box = styled.div`
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   display: grid;
   place-items: center;
   font-weight: 700;
@@ -51,17 +51,19 @@ const NumberContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
+  
+  .flex {
+    height: fit-content;
+    display: flex;
+    gap: 1rem;
+  }
+  
   p {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
   }
 
-  .flex {
-    height: 100%;
-    display: flex;
-    gap: 1.5rem;
-  }
 `;
 
 NumberSelector.propTypes = {

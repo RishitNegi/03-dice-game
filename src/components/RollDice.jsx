@@ -3,14 +3,7 @@ import propTypes from "prop-types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const RollDice = ({
-  CurrentDice,
-  rollDice,
-  setScore,
-  SelectedNumber,
-  setSelectedNumber
-}) => {
-  console.log(SelectedNumber);
+const RollDice = ({ CurrentDice, rollDice, SelectedNumber }) => {
   const notify = () =>
     toast("Please Select Number", {
       position: "top-center",
@@ -28,16 +21,15 @@ const RollDice = ({
     <DiceContainer>
       <div className="DiceBox">
         <img
-          onClick={() => (SelectedNumber === undefined || SelectedNumber === 0 ? notify() : rollDice())}
+          onClick={() =>
+            SelectedNumber === undefined || SelectedNumber === 0
+              ? notify()
+              : rollDice()
+          }
           src={`src/assets/Dice/dice_${CurrentDice}.png`}
           alt={`Dice ${CurrentDice}`}
         />
         <p>Click on dice to roll </p>
-
-        <button onClick={() => {setScore(0); setSelectedNumber(0)}} className="reset">
-          Reset score
-        </button>
-        <button className="rules">Show Rules</button>
       </div>
     </DiceContainer>
   );
@@ -46,10 +38,13 @@ const RollDice = ({
 export default RollDice;
 
 const DiceContainer = styled.div`
+width: fit-content;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 3rem;
 
   .DiceBox {
     width: fit-content;
@@ -59,17 +54,15 @@ const DiceContainer = styled.div`
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
+    }
+  
+  img {
+    width: 200px;
   }
 
-  button {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 18px;
-    margin: 10px;
-    font-weight: 600;
-    transition: 0.2s background ease-in;
-    border: 1px solid #000;
+
+  p {
+    margin-top: 15px;
   }
 
   .reset {
@@ -99,5 +92,4 @@ RollDice.propTypes = {
   setScore: propTypes.func,
   SelectedNumber: propTypes.number,
   setSelectedNumber: propTypes.func,
-
 };

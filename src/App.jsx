@@ -17,7 +17,7 @@ const App = () => {
       ) : (
         <StartGame toggle={toggleGamePlay} />
       )}
-      <ToastContainer limit={1}/>
+      <ToastContainer limit={1} />
     </MainContainer>
   );
 };
@@ -25,7 +25,7 @@ const App = () => {
 export default App;
 
 const MainContainer = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 4rem 5rem;
+  height: fit-content;
+  padding: 0 5%;
+  padding-top: 4rem ;
 `;
