@@ -26,7 +26,7 @@ const RollDice = ({ CurrentDice, rollDice, SelectedNumber }) => {
               ? notify()
               : rollDice()
           }
-          src={`src/assets/Dice/dice_${CurrentDice}.png`}
+          src={`src/Dice/dice_${CurrentDice}.png`}
           alt={`Dice ${CurrentDice}`}
         />
         <p>Click on dice to roll </p>
