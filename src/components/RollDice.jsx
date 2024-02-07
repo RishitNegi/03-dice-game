@@ -26,7 +26,7 @@ const RollDice = ({ CurrentDice, rollDice, SelectedNumber }) => {
               ? notify()
               : rollDice()
           }
-          src={`https://github.com/RishitNegi/03-dice-game/tree/main/src/Images/dice_${CurrentDice}.png`}
+          src={`src/Images/dice-${CurrentDice}.png`}
           alt={`Dice ${CurrentDice}`}
         />
         <p>Click on dice to roll </p>
